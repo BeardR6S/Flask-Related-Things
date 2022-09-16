@@ -82,17 +82,18 @@ def guide_update(id):
 @app.route("/guide/<id>", methods=["DELETE"])
 def guide_delete(id):
     guide = Guide.query.get(id)
+    title = request.json['title']
     db.session.delete(guide)
     db.session.commit()
     
-    #! This will delete the guide 
+    #! This will delete the guide. 
     #return guide_schema.jsonify(guide)
     
-    #! This will return the ID of the guide that was deleted
+    #! This will return the ID of the guide that was deleted.
     #return f"Guide #{id} was successfully deleted"
     
-    #! I want the {} to return the title in " ".
-    return f"Guide {title} was deleted successfully"
+    #! This returns the title of the deleted post.
+    return f"Guide \"{title}\" was deleted successfully"
 
 
 if __name__ == '__main__':
